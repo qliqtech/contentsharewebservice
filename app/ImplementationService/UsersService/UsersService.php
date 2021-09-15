@@ -2,10 +2,13 @@
 
 namespace App\ImplementationService\UsersService;
 
-
-use App\ExternalApis\SMSApi;
+//use App\ExternalApis\SMSApi;
 use App\Helpers\AuditEnums;
 use App\Helpers\GenerateRandomCharactersHelper;
+use App\Helpers\PaginationHelper;
+
+use ImplementationService\BaseImplementationService;
+
 
 class UsersService extends \App\ImplementationService\BaseImplementationService
 {
@@ -69,6 +72,25 @@ class UsersService extends \App\ImplementationService\BaseImplementationService
         ];
 
     }
+
+    public function listusers($requestparams){
+
+
+
+        $listofusers = $this->userrepository;
+
+        $data = PaginationHelper::paginate($listofusers->all());
+
+
+        return $response = [
+            "responsecode"=>"200",
+            "userlist"=>$data,
+            "message"=>"Users list",
+
+        ];
+    }
+
+
 
 
 }

@@ -6,8 +6,9 @@ namespace App\Http\Controllers;
 
 use App\Helpers\CRUDRequestModeEnums;
 use App\Helpers\GenerateRandomCharactersHelper;
+use App\ImplementationService\UsersService;
 
-use App\ImplementationService\Use;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
@@ -22,6 +23,8 @@ class AccountController extends Controller
 
 
     }
+
+
 
     public function CreateOrEditUser(Request $request){
 
@@ -88,5 +91,31 @@ class AccountController extends Controller
         return $response;
 
     }
+
+
+
+    public function ListUsers(Request $request){
+
+     //   $request->request->add($this->GetUserAgent($request));
+
+
+
+
+        $response = null;
+
+        $allkeys = $request->all();
+
+
+        $service = App::make(UsersService\UsersService::class);
+
+
+        $response =  $service->listusers($allkeys);
+
+
+
+        return $response;
+
+    }
+
 
 }

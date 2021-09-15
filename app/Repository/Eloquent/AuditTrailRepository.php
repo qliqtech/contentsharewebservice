@@ -5,7 +5,7 @@ namespace App\Repository\Eloquent;
 
 
 
-use App\AuditTrail;
+use App\Models\AuditTrail;
 use App\Repository\IAuditTrailRepository;
 
 class AuditTrailRepository extends BaseRepository implements IAuditTrailRepository
