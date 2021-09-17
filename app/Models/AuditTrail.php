@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class AuditTrail extends Model
 {
 
-    protected $fillable = ['activityname','created_by','actionurl'];
+
+    protected $fillable = ['userid','actionid','activityname','browser','userip','requesturl','clientserverip','responsemessage',
+        'requestbody','responsebody'];
 
 }

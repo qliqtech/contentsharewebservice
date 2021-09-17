@@ -32,10 +32,9 @@ class AccountController extends Controller
 
         $response = null;
 
-
         $allkeys = $request->all();
 
-        $service = App::make(UsersService::class);
+        $service = App::make(UsersService\UsersService::class);
 
 
         if($allkeys['Mode'] == CRUDRequestModeEnums::Create){
@@ -43,11 +42,11 @@ class AccountController extends Controller
 
 
             $validator = Validator::make($request->all(), [
-                'firstname' => 'required|string|max:255',
-                'lastname' => 'required|string|max:255',
-                'phonenumber' => 'required|string|max:255',
+                'name' => 'required|string|max:255',
+
+                'phonenumber' => 'required|string|max:30',
                 'email' => 'required|string|email|max:255|unique:users',
-                //   'password' => 'required|string|min:6|confirmed',
+                   'password' => 'required|string|min:6',
             ]);
 
 
@@ -67,7 +66,10 @@ class AccountController extends Controller
 
             $allkeys =  array_add($allkeys,'password',$hashedpassword);
 
-            $allkeys =  array_add($allkeys,'rawpassword',$rawpassword);
+            $allkeys =  array_add($allkeys,'Isconfirmed',false);
+
+            $allkeys =  array_add($allkeys,'userroleid',1);
+
 
             $response =  $service->createUser($allkeys);
 
@@ -117,5 +119,24 @@ class AccountController extends Controller
 
     }
 
+
+
+    public function authenticationerror (Request $request) {
+
+        $response = ['message' => 'Authentication Error'];
+        return response($response, 200);
+    }
+
+    public function userdeactivated (Request $request) {
+
+        $response = ['message' => 'User Deactivated Error'];
+        return response($response, 200);
+    }
+
+    public function accessdenied (Request $request) {
+
+        $response = ['message' => 'access denied'];
+        return response($response, 200);
+    }
 
 }

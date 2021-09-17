@@ -16,9 +16,16 @@ class Controller extends BaseController
 
     public function GetUserAgent(Request $request){
 
+        $userid = null;
+
+        if($request->user() != null){
+
+            $userid = $request->user()->id;
+        }
+
 
         $useragent = ['userip'=>$request->ip(),
-            'userid'=>$request->user()->id,
+            'userid'=>$userid,
             'requesturl'=>$request->fullUrl(),
             'browser'=>$request->userAgent(),
             'requestbody'=>$request->getContent()];

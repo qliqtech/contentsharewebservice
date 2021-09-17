@@ -6,8 +6,7 @@ namespace App\ImplementationService\UsersService;
 use App\Helpers\AuditEnums;
 use App\Helpers\GenerateRandomCharactersHelper;
 use App\Helpers\PaginationHelper;
-
-use ImplementationService\BaseImplementationService;
+use App\Models\ResourcesUserroles;
 
 
 class UsersService extends \App\ImplementationService\BaseImplementationService
@@ -26,7 +25,9 @@ class UsersService extends \App\ImplementationService\BaseImplementationService
 
 
 
-        $rawpassword = $requestparams['rawpassword'];
+      //  $rawpassword = $requestparams['rawpassword'];
+
+        //do password confirmation check
 
 
         $requestparams =  array_add($requestparams,'created_by',$userid);
@@ -42,15 +43,15 @@ class UsersService extends \App\ImplementationService\BaseImplementationService
 
 
 
-        if(!$this->CheckifUserIsActiveOrDeactivated($userid)){
+      //  if(!$this->CheckifUserIsActiveOrDeactivated($userid)){
 
-            return $response = [
-                "responsecode"=>"201",
-                "message"=>"User is deactivated",
+      //      return $response = [
+      //          "responsecode"=>"201",
+      //          "message"=>"User is deactivated",
+//
+      //      ];
 
-            ];
-
-        }
+      //  }
 
         $this->userrepository->create($requestparams);
 
@@ -61,7 +62,7 @@ class UsersService extends \App\ImplementationService\BaseImplementationService
 
         //send credentials
 
-
+       //  die();
 
         $this->AuditActivity($requestparams);
 
@@ -90,6 +91,34 @@ class UsersService extends \App\ImplementationService\BaseImplementationService
         ];
     }
 
+    public function checkuserrolepermission($requestparams){
+
+        $roleid = $requestparams["userroleid"];
+
+        $url = $requestparams["url"];
+
+        //get current resource id
+
+        $resource = $this->resourcesreopsitory->getresourcebyurl($url);
+
+     //   dd($roleid);
+
+        if($resource == null){
+
+            return "resource does not exist";
+
+        }
+
+       $userresource = ResourcesUserroles::where('roleid',$roleid)->where('resourceid',$resource->id)->first();
+
+        if($userresource==null){
+
+            return "Permission denied";
+
+        }
+
+        return "true";
+    }
 
 
 

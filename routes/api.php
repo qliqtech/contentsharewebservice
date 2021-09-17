@@ -19,11 +19,26 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => ['cors', 'json.response']], function () {
-    Route::post('/login', 'ApiAuthController@login')->name('login.api');
-    Route::post('/register','App\Http\Controllers\Auth\ApiAuthController@register')->name('register.api');
-    Route::post('/logout', 'Auth\ApiAuthController@logout')->name('logout.api');
+    Route::post('/login', 'Auth\ApiAuthController@login')->name('login.api');
+    Route::post('/register', 'Auth\ApiAuthController@register')->name('login.api');
 
 
-    Route::post('/listusers', 'AccountController@listusers')->name('listusers.api');
+
+    //  Route::post('/register','App\Http\Controllers\Auth\ApiAuthController@register')->name('register.api');
+  //  Route::post('/register', 'AccountController@CreateOrEditUser')->name('listusers.api');
+
+    Route::post('/listusers', 'AccountController@listusers')->name('listusers.api')->middleware('auth:api')->middleware( 'api.user');;
+
+  //  Route::post('/register', 'AccountController@CreateOrEditUser')->name('listusers.api');
+
+
+    Route::post('/accessdenied', 'AccountController@accessdenied')->name('accessdenied.api');
+
+    Route::post('/userdeactivated', 'AccountController@userdeactivated')->name('userdeactivated.api');
+
+
+  //
+
+
 
 });
