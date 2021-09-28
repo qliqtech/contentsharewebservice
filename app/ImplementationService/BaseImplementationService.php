@@ -6,6 +6,7 @@ namespace App\ImplementationService;
 
 use App\Repository\IAuditTrailRepository;
 
+use App\Repository\IContentRepositoryInterface;
 use App\Repository\IResourcesRepository;
 use App\Repository\IUserRepositoryInterface;
 use App\Repository\IUserRolesRepository;
@@ -20,14 +21,17 @@ class BaseImplementationService
         $requestparameters,
         $resourcesreopsitory,
         $userrolesrepository,
-        $userroesresourcesrepository;
+        $userroesresourcesrepository,
+        $contentrepository;
 
     public function __construct(
                                 IUserRepositoryInterface $userRepository,
                                 IAuditTrailRepository $auditTrailRepository,
                                 IResourcesRepository $resourcesRepository,
                                 IUserRolesRepository $userRolesRepository,
-                                IUserRolesResourcesRepository $userRolesResourcesRepository
+                                IUserRolesResourcesRepository $userRolesResourcesRepository,
+                                IContentRepositoryInterface $contentRepository
+
 
 
 
@@ -41,6 +45,7 @@ class BaseImplementationService
         $this->resourcesreopsitory = $resourcesRepository;
         $this->userrolesrepository = $userRolesRepository;
         $this->userroesresourcesrepository = $userRolesResourcesRepository;
+        $this->contentrepository = $contentRepository;
 
 
 

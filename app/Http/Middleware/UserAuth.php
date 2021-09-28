@@ -30,7 +30,7 @@ class UserAuth
             $resourceurl = $request->getRequestUri();
 
 
-        //    dd($resourceurl);
+
 
             $userroleid = $request->user()->userroleid;
 
@@ -45,8 +45,6 @@ class UserAuth
 
             $result = $service->checkuserrolepermission($params);
 
-
-          //  dd($service->checkuserrolepermission($params));
 
             if($result!="true"){
 

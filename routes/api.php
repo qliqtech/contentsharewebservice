@@ -29,7 +29,7 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
 
     Route::post('/listusers', 'AccountController@listusers')->name('listusers.api')->middleware('auth:api')->middleware( 'api.user');;
 
-  //  Route::post('/register', 'AccountController@CreateOrEditUser')->name('listusers.api');
+    Route::post('/createcontent', 'ContentController@createcontent')->name('createcontent.api')->middleware('auth:api')->middleware( 'api.user');;
 
 
     Route::post('/accessdenied', 'AccountController@accessdenied')->name('accessdenied.api');

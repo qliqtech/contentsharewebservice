@@ -26,6 +26,7 @@ class Controller extends BaseController
 
         $useragent = ['userip'=>$request->ip(),
             'userid'=>$userid,
+            'created_by'=>$userid,
             'requesturl'=>$request->fullUrl(),
             'browser'=>$request->userAgent(),
             'requestbody'=>$request->getContent()];
