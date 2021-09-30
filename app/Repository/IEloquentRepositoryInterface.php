@@ -25,4 +25,14 @@ interface  IEloquentRepositoryInterface
 
     public function listall(): Collection;
 
+
+    public function delete($id,$isDeletedBy);
+
+    public function activate($id,$isDeletedBy);
+
+    public function deactivate($id,$isDeletedBy);
+
+    public function checkownership($itemid,$currentuserid);
+
+
 }

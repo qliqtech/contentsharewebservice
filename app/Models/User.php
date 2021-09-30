@@ -26,7 +26,13 @@ class User extends Authenticatable
         'userroleid',
         'Isconfirmed',
         'ConfirmedOn',
-        'password',
+        'phonenumber',
+        'IsDeleted',
+        'IsDeletedOn',
+        'IsActive',
+        'DeletedBy',
+        'DeactivatedOn',
+
     ];
 
     /**

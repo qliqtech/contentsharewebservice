@@ -37,6 +37,11 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
     Route::post('/userdeactivated', 'AccountController@userdeactivated')->name('userdeactivated.api');
 
 
+    Route::post('/removecontent', 'ContentController@removecontent')->name('removecontent.api')->middleware('auth:api')->middleware( 'api.user');;
+
+
+
+
   //
 
 

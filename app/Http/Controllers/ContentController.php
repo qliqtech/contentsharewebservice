@@ -59,4 +59,47 @@ class ContentController extends Controller
         }
 
 
+
+
+    public function removecontent(Request $request){
+
+        ///    echo "wiiiii"; die();
+
+        $request->request->add($this->GetUserAgent($request));
+
+        $response = null;
+
+        $allkeys = $request->all();
+
+        $service = App::make(ContentService::class);
+
+
+        $validator = Validator::make($request->all(), [
+            'contentid' => 'required|string|min:1',
+
+        ]);
+
+
+        if ($validator->fails())
+        {
+            $response = ['message' => 'validation errors',
+                'usertoken' => null,
+                'errors'=>$validator->errors()->all(),
+                'responsecode' => 203];
+            return $response;
+        }
+
+
+
+
+        $response =  $service->removeContent($allkeys);
+
+
+
+
+        return $response;
+
+    }
+
+
 }

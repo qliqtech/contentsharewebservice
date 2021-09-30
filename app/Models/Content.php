@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 class Content extends Model
 {
 
-    protected $fillable = ['IsActive','Title','ContentType','Price','IsDeleted','created_by'];
+    protected $fillable = ['IsActive','Title','ContentType','Price',
+        'created_by',
+        'IsDeleted',
+        'IsDeletedOn',
+        'IsActive',
+        'DeactivatedOn','DeletedBy'
+        ];
 
 }

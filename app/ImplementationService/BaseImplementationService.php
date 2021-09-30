@@ -77,4 +77,20 @@ class BaseImplementationService
     }
 
 
+
+    public function CheckOwnership($contentid,$userid){
+
+
+        if(!$this->contentrepository->checkownership($contentid,$userid)){
+
+
+            die('Not owner');
+
+        }
+
+    }
+
+
+
+
 }

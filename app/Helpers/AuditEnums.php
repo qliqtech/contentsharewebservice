@@ -11,6 +11,7 @@ class AuditEnums
 
     const ContentCreated = 4;
 
+    const ContentDeleted = 5;
 
 
     const Edit = 2;
