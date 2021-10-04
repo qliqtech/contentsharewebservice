@@ -68,7 +68,6 @@ class BaseRepository implements IEloquentRepositoryInterface
 
         $record->DeletedBy = $isDeletedBy;
 
-
         $record->IsDeletedOn = TimeHelper::getCurrentDateTime();
 
         $record->IsActive = false;
